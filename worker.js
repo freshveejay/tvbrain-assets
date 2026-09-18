@@ -1,0 +1,49 @@
+
+addEventListener('fetch', (event) => { event.respondWith(handle(event.request)); });
+
+const HTML = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>TVBrain \u2014 your antenna, with taste</title>\n<meta name=\"description\" content=\"A recommendation brain for over-the-air TV. Plugs into your HDHomeRun, learns what you love, and turns 160 channels of static into rails of things worth watching. Local, private, free.\">\n<meta property=\"og:title\" content=\"TVBrain \u2014 your antenna, with taste\">\n<meta property=\"og:description\" content=\"Cable-box energy. No cable. No cloud. Free for HDHomeRun owners.\">\n<meta property=\"og:image\" content=\"https://cdn.jsdelivr.net/gh/freshveejay/tvbrain-assets@main/dashboard.jpg\">\n<meta property=\"og:url\" content=\"https://tvbrain.org\">\n<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>\ud83d\udcfa</text></svg>\">\n<style>\n:root{--bg:#0e0f12;--elev:#14161a;--card:#1b1d22;--border:#2a2d34;--text:#e8e8ea;--dim:#9a9da5;--faint:#6b6e76;--red:#e0443c;--blue:#3f8cff;--green:#2ecc71}\n*{box-sizing:border-box;margin:0;padding:0}\nbody{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding-inline:16px}\n.wrap{max-width:980px;margin:0 auto}\nheader{padding:28px 0 8px;display:flex;align-items:center;gap:10px}\n.logo{font-size:22px;font-weight:800;letter-spacing:.5px}\n.logo .tv{color:var(--red)}\n.tagline{color:var(--faint);font-size:13px;margin-left:auto}\n.hero{text-align:center;padding:44px 0 12px}\nh1{font-size:clamp(30px,5.5vw,52px);font-weight:800;line-height:1.12;letter-spacing:-.5px}\nh1 .accent{color:var(--red)}\n.sub{color:var(--dim);font-size:clamp(15px,2.4vw,19px);max-width:640px;margin:18px auto 0}\n.shot{margin:36px auto 8px;max-width:980px}\n.shot img{width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:0 24px 80px rgba(0,0,0,.55);display:block}\n.shot figcaption{color:var(--faint);font-size:12px;margin-top:10px}\n.cta{background:var(--elev);border:1px solid var(--border);border-radius:14px;padding:26px;margin:40px auto;max-width:640px;text-align:center}\n.cta h2{font-size:20px;margin-bottom:4px}\n.cta p{color:var(--dim);font-size:14px;margin-bottom:16px}\nform{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}\ninput{background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:12px 14px;font-size:15px;outline:none;min-width:0}\ninput:focus{border-color:var(--blue)}\n#email{flex:2 1 240px}\n#zip{flex:1 1 110px;max-width:140px}\n.hp{position:absolute;left:-5000px;opacity:0}\nbutton{background:var(--red);color:#fff;border:none;border-radius:8px;padding:12px 22px;font-size:15px;font-weight:700;cursor:pointer;flex:0 0 auto}\nbutton:hover{filter:brightness(1.1)}\n#formnote{font-size:13px;color:var(--faint);margin-top:10px}\n#formnote.ok{color:var(--green)}\n.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:44px 0}\n.feat .f{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}\n.f h3{font-size:16px;margin-bottom:8px}\n.f h3 .dot{color:var(--red)}\n.f p{color:var(--dim);font-size:14px}\n.how{margin:24px 0 44px}\n.how h2{font-size:22px;margin-bottom:16px;text-align:center}\n.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}\n.step{border-left:3px solid var(--red);padding:4px 0 4px 16px}\n.step b{display:block;margin-bottom:4px}\n.step span{color:var(--dim);font-size:14px}\nfooter{border-top:1px solid var(--border);margin-top:30px;padding:26px 0 40px;color:var(--faint);font-size:13px;text-align:center}\nfooter p{margin-top:6px}\n</style>\n</head>\n<body>\n<div class=\"wrap\">\n<header>\n  <div class=\"logo\"><span class=\"tv\">TV</span>Brain</div>\n  <div class=\"tagline\">tvbrain.org</div>\n</header>\n\n<section class=\"hero\">\n  <h1>Cable-box energy.<br><span class=\"accent\">No cable. No cloud.</span></h1>\n  <p class=\"sub\">TVBrain plugs into the HDHomeRun you already own, learns what you love, and turns\n  160 channels of over-the-air static into rails of things actually worth watching \u2014\n  live news walls, forgotten westerns, prestige documentaries. Watch in your browser. Everything runs in your house.</p>\n</section>\n\n<figure class=\"shot\">\n  <img src=\"https://cdn.jsdelivr.net/gh/freshveejay/tvbrain-assets@main/dashboard.jpg\" alt=\"TVBrain dashboard: On Now rail with live PBS News Hour, NHK Newsline, France 24; Live Now strip; Top Picks and Foreign &amp; World News rails\" loading=\"eager\">\n  <figcaption>The actual product, running on a Mac mini in Los Angeles \u2014 every card ranked by a taste engine that runs on hardware you own.</figcaption>\n</figure>\n\n<section class=\"cta\" id=\"waitlist\">\n  <h2>Free for HDHomeRun owners</h2>\n  <p>Early access is rolling out city by city. Your ZIP tells us which broadcast market to teach it next.</p>\n  <form id=\"wl\">\n    <input id=\"email\" name=\"email\" type=\"email\" required placeholder=\"you@example.com\" autocomplete=\"email\">\n    <input id=\"zip\" name=\"zip\" inputmode=\"numeric\" placeholder=\"ZIP (optional)\" maxlength=\"10\">\n    <input class=\"hp\" name=\"website\" tabindex=\"-1\" autocomplete=\"off\">\n    <button type=\"submit\">Get early access</button>\n  </form>\n  <div id=\"formnote\">No spam, no tracking \u2014 one email when your market is ready.</div>\n</section>\n\n<section class=\"feat\">\n  <div class=\"f\"><h3><span class=\"dot\">\u25cf</span> It has taste</h3>\n    <p>A local AI classifies every series on your antenna \u2014 news by country, movies by era and quality, the gems buried on channel 54.4 \u2014 then learns yours from a thumbs-up. No two dashboards look alike.</p></div>\n  <div class=\"f\"><h3><span class=\"dot\">\u25cf</span> Watch in the browser</h3>\n    <p>Click a card, the tuner tunes, the stream plays \u2014 live TV in any browser on your network, with a live-news wall that actually knows what's live.</p></div>\n  <div class=\"f\"><h3><span class=\"dot\">\u25cf</span> Nothing leaves your house</h3>\n    <p>The guide, the AI, the video \u2014 all of it runs on your own hardware. No subscription, no account required to run it, no company watching you watch. Works when the internet doesn't.</p></div>\n</section>\n\n<section class=\"how\">\n  <h2>How it works</h2>\n  <div class=\"steps\">\n    <div class=\"step\"><b>1 \u00b7 Antenna + HDHomeRun</b><span>The $30 antenna and the network tuner you may already own. That's all the hardware.</span></div>\n    <div class=\"step\"><b>2 \u00b7 Run TVBrain</b><span>One install on a Mac or mini-PC on the same network. It finds your tuner by itself.</span></div>\n    <div class=\"step\"><b>3 \u00b7 Teach it</b><span>Thumbs up, thumbs down. Within a week the front page is yours.</span></div>\n  </div>\n</section>\n\n<footer>\n  <div><b>TVBrain</b> \u2014 your antenna, with taste.</div>\n  <p>Independent project; not affiliated with SiliconDust or HDHomeRun. Privacy: the wait-list stores your email and optional ZIP, nothing else \u2014 no analytics, no cookies.</p>\n</footer>\n</div>\n<script>\ndocument.getElementById('wl').addEventListener('submit', async (e) => {\n  e.preventDefault();\n  const note = document.getElementById('formnote');\n  const body = {\n    email: document.getElementById('email').value,\n    zip: document.getElementById('zip').value,\n    website: document.querySelector('.hp').value\n  };\n  note.textContent = 'adding you\u2026'; note.className = '';\n  try {\n    const r = await fetch('/api/waitlist', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body)});\n    if (r.ok) { note.textContent = \"You're on the list. We'll email you when your market is ready.\"; note.className = 'ok'; e.target.reset(); }\n    else { const d = await r.json().catch(()=>({})); note.textContent = d.error || 'something went wrong \u2014 try again'; }\n  } catch { note.textContent = 'network hiccup \u2014 try again'; }\n});\n</script>\n</body>\n</html>\n";
+
+async function handle(req) {
+  const url = new URL(req.url);
+  if (url.pathname === '/api/waitlist' && req.method === 'POST') {
+    try {
+      const data = await req.json();
+      if (data.website) return json({ ok: true });  // honeypot
+      const email = String(data.email || '').trim().toLowerCase();
+      if (email.length > 254 || !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) {
+        return json({ error: 'that email does not look right' }, 400);
+      }
+      const key = 'email:' + email;
+      const existing = await WAITLIST.get(key);
+      if (!existing) {
+        await WAITLIST.put(key, JSON.stringify({
+          at: new Date().toISOString(),
+          zip: String(data.zip || '').replace(/[^0-9-]/g, '').slice(0, 10),
+          country: (req.cf && req.cf.country) || null
+        }));
+      }
+      return json({ ok: true });
+    } catch (e) {
+      return json({ error: 'bad request' }, 400);
+    }
+  }
+  if (url.pathname === '/' && req.method === 'GET') {
+    return new Response(HTML, { headers: {
+      'content-type': 'text/html; charset=utf-8',
+      'cache-control': 'public, max-age=300',
+      'x-frame-options': 'DENY',
+      'x-content-type-options': 'nosniff',
+      'referrer-policy': 'no-referrer'
+    }});
+  }
+  if (url.pathname === '/robots.txt') {
+    return new Response('User-agent: *\nAllow: /\n', { headers: { 'content-type': 'text/plain' } });
+  }
+  return Response.redirect(url.origin + '/', 302);
+}
+
+function json(o, s) {
+  return new Response(JSON.stringify(o), { status: s || 200, headers: {
+    'content-type': 'application/json', 'cache-control': 'no-store'
+  }});
+}
